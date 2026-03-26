@@ -1,61 +1,57 @@
-from cmath import rect
-from math import radians
-import random
-from turtle import circle, color, width
-import random
 import pygame
 
 # Initialize the pygame window
 pygame.init()
-surface = pygame.display.set_mode((1080, 640))
-clock = pygame.time.Clock()
-running = True
 
-# Color vars
-color = (255, 192, 203)
+# define width of screen
+width = 1000
+# define height of screen
+height = 600
+screen_res = (width, height)
+
+screen = pygame.display.set_mode(screen_res)
+
+# define colors
 red = (255, 0, 0)
-blue = (0, 0, 128)
-green = (0, 128, 0)
+black = (0, 0, 0)
 
+# define ball
+ball_obj = pygame.draw.circle(
+    surface=screen, color=red, center=[100, 100], radius=40)
+# define speed of ball
+# speed = [X direction speed, Y direction speed]
+speed = [1, 1]
 
-
-def Draw_Circle():
-    
-    # vars for the circle function
-    radius = 5
-    pos = []
-    circle_pos = (500, 500)
-    
-    
-    pygame.draw.circle(surface, color, circle_pos, radius, width=0)
-    print("circle drawn")
-
-
-while running:
-    # poll for events
-    # pygame.QUIT events means the user clicked X to close the window
+# game loop
+while True:
+    # event loop
     for event in pygame.event.get():
+        # check if a user wants to exit the game or not
         if event.type == pygame.QUIT:
-            running = False
-            
-    pygame.display.get_surface()
-    
-    # fill the screen with a color to wipe away anything from the last frame
-    surface.fill("black")
-    
-    # render the physics engine
-    
-    # draw a circle
-    Draw_Circle()
-    
-    
-    
-    # flip() the display to put the physics engine on screen
+            exit()
+
+    # fill black color on screen
+    screen.fill(black)
+
+    # move the ball
+    # Let center of the ball is (100,100)  and the speed is (1,1)
+    ball_obj = ball_obj.move(speed)
+    # Now center of the ball is (101,101)
+
+    # if ball goes out of screen then change direction of movement
+    if ball_obj.left <= 0 or ball_obj.right >= width:
+        speed[0] = -speed[0]
+    if ball_obj.top <= 0 or ball_obj.bottom >= height:
+        speed[1] = -speed[1]
+
+    # draw ball at new centers that are obtained after moving ball_obj
+    pygame.draw.circle(surface=screen, color=red,
+                       center=ball_obj.center, radius=40)
+
+    # update screen
     pygame.display.flip()
-    
-        
-    
-    
+
+
 pygame.quit()
     
 
