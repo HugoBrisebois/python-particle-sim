@@ -1,3 +1,5 @@
+from ast import Pass
+
 import pygame
 
 # Initialize the pygame window
@@ -15,12 +17,18 @@ screen = pygame.display.set_mode(screen_res)
 red = (255, 0, 0)
 black = (0, 0, 0)
 
-# define ball
-ball_obj = pygame.draw.circle(
-    surface=screen, color=red, center=[100, 100], radius=40)
 # define speed of ball
 # speed = [X direction speed, Y direction speed]
-speed = [1, 1]
+speed = [0.5, 0.5]
+
+
+# define ball
+ball_obj = pygame.draw.circle(surface=screen, color=red, center=[25, 25], radius=5)
+
+class ball:
+    pass
+
+
 
 # game loop
 while True:
@@ -45,8 +53,9 @@ while True:
         speed[1] = -speed[1]
 
     # draw ball at new centers that are obtained after moving ball_obj
-    pygame.draw.circle(surface=screen, color=red,
-                       center=ball_obj.center, radius=40)
+    pygame.draw.circle(surface=screen, color=red, center=ball_obj.center, radius=5)
+    
+    
 
     # update screen
     pygame.display.flip()
