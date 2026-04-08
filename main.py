@@ -6,7 +6,6 @@ import pygame
 import pymunk
 
 # initialize the physics engine
-
 # Create a space which contains the simulation
 space = pymunk.Space()
 space.gravtity = 0, -981 # set the gravity
@@ -70,7 +69,7 @@ class Ball:
             
     def draw(self, surface):
         # draw the ball on screen
-        pygame.draw.circle(surface=surface, color=self.color, center=self.rect.center, radius=self.radius, width=0)  # Fixed: was Surface=
+        pygame.draw.circle(surface=surface, color=self.color, center=self.rect.center, radius=self.radius, width=0)
 
 
 balls = [
