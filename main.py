@@ -3,8 +3,26 @@ from ast import Pass
 import pygame
 
 # physics engine
-from pymunk import *
+import pymunk
 
+# initialize the physics engine
+
+# Create a space which contains the simulation
+space = pymunk.Space()
+space.gravtity = 0, -981 # set the gravity
+
+body = pymunk.Body() # Create a body
+body.position = 50,100 # set the position
+
+poly = pymunk.Poly.create_box(body) # create a box shape and attach to body
+poly.mass = 10
+space.add(body, poly) # add both body and shape to simulation
+
+print_option = pymunk.SpaceDebugDrawOptions() # for easy printing
+
+for _ in range(100): # Run the simulation 100 steps in total
+    space.step(0.02) # step the simulation on step forward
+    space.debug_draw(print_option) # print the state of the simulation
 
 # Initialize the pygame window
 pygame.init()
