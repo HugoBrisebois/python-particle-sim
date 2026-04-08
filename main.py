@@ -2,6 +2,10 @@ from ast import Pass
 
 import pygame
 
+# physics engine
+from pymunk import *
+
+
 # Initialize the pygame window
 pygame.init()
 
