@@ -27,6 +27,7 @@ def sim():
             if event.type == pygame.QUIT:
                 return
         
+        # fill display with the color white
         display.fill((255,255,255))
         pygame..draw.circle()
 
